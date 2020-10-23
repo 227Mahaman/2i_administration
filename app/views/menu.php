@@ -24,4 +24,4 @@
         ?>
     </ul>
 </li>
-<li><a href="index.php?p=deconnexion"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+<li><a href="index.php?p=deconnexion"><em class="fa fa-power-off">&nbsp;</em> Se déconnecter</a></li>

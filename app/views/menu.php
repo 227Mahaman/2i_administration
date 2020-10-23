@@ -24,6 +24,7 @@
         ?>
     </ul>
 </li>
+<?php if(sizeof($_SESSION['bloc_configuration'])!=0):?><!--Vérifier si l'user a accès au menu de ce bloc_configuration-->
 <li class="parent "><a data-toggle="collapse" href="#sub-item-2">
     <em class="fa fa-navicon">&nbsp;</em> <?= $_SESSION['bloc_configuration']['0']['libelle_groupe'];?> <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
     </a>
@@ -45,4 +46,5 @@
         ?>
     </ul>
 </li>
+<?php endif;?>
 <li><a href="index.php?p=deconnexion"><em class="fa fa-power-off">&nbsp;</em> Se déconnecter</a></li>

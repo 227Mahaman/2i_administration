@@ -18,8 +18,9 @@ $title="Authentification";
 <body>
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+        <!--<img src="public/img/logo.png" alt="2iSoft Logo"/>-->
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading"><img src="" alt="2iSoft Logo"/></div>
+				<div class="panel-heading">2i Administration</div>
 				<div class="panel-body">
 					<form role="form" method="post">
 						<fieldset>

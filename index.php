@@ -36,24 +36,25 @@
                     //le profil du user
                     $id_profil = $row['id_profil']; 
                     
-                //********récupération de la liste des actions autorisées du bloc config***********************************
+                //********1.récupération de la liste des actions autorisées du bloc configuration***********************************
                 $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
-                        FROM action a, profil_has_action p, groupe_action g
-                        WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
-                        and id_profil=$id_profil and bloc_menu='config'
-                        order by libelle_groupe asc, ordre_affichage_action asc";
+                    FROM action a, profil_has_action p, groupe_action g
+                    WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                    and id_profil=$id_profil and bloc_menu='configuration'
+                    order by libelle_groupe asc, ordre_affichage_action asc"
+                ;
                 $result_config = $pdo->query($sql);
-                //initialisation de la variable de session pour config
+                //initialisation de la variable de session pour configuration
                 $_SESSION['bloc_config']= array();
                 $i=0;
                 foreach($result_config as $row_config){
                     $_SESSION['bloc_config'][$i] = array('id_groupe' => $row_config['id_groupe'],
-                                                            'libelle_groupe' => $row_config['libelle_groupe'],
-                                                            'icon_groupe' => $row_config['icon_groupe'],
-                                                            'id_action' => $row_config['id_action'],
-                                                            'libelle_action' => $row_config['libelle_action'],
-                                                            'url_action' => $row_config['url_action']
-                                                    );
+                        'libelle_groupe' => $row_config['libelle_groupe'],
+                        'icon_groupe' => $row_config['icon_groupe'],
+                        'id_action' => $row_config['id_action'],
+                        'libelle_action' => $row_config['libelle_action'],
+                        'url_action' => $row_config['url_action']
+                    );
                     $i++;
                 }//fin foreach
                 //**********récupération de la liste des actions autorisées du bloc simple*********************

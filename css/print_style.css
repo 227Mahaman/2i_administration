@@ -1,0 +1,18 @@
+/* 
+    style d'impression'
+*/
+#menu, .breadcrumb, #form_search, #tab tr td a, #p_msg_confirmation{
+    display: none;
+}
+div.pagination{
+	display: none;
+}
+
+#lien_a_nouveau{
+    display: none;
+}
+
+/*#tab tr td:last-childr{
+    display: none;
+}*/
+

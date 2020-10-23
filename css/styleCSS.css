@@ -1,0 +1,383 @@
+/*
+    style controle'
+*/
+body{
+    font-size: 13px;
+    color: #000365;
+}
+
+
+.reciept{
+    background-color: #2A3F54;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    margin-left:-1px;
+    margin-top: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+
+}
+.reciept2{
+    background-color:#fafafa;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    margin-left:-1px;
+    margin-top: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+
+}
+.recieptBlanc{
+    background-color:#ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    margin-left:-1px;
+    margin-top: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+
+}
+
+.BackCollor{
+    background: #080821;
+    color: #F1F1F1
+}
+
+.gris{
+    background:#C0CDDA;
+}
+
+.verte{
+    color: #f97821;
+}
+.rouge{
+    color: #cc0000;
+}
+.blanc{
+    color: #FFFFFF;
+}
+.inputClass {
+    font-family: "Times New Roman", Times, serif;
+    font-size:15px;
+    height: 25px;
+    width: 183px;
+    border: 1px solid #000;
+    border-radius: 3px 3px 3px 3px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+
+/******************TREE DOSSIER***************************/
+
+
+#div_arbre{
+    height: 550px;
+    overflow-y: scroll;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#div_detail_arbre{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#nav_folder_file{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/******************form_add_folder style**************************************/
+#div_form_folder{
+    display: none;
+}
+#form_add_folder{
+    border: 1px solid #5E5E5E;
+    border-radius: 10px;
+    padding:10px;
+    margin: 10px;
+}
+#form_add_folder legend{
+    margin-bottom: 5px;
+    font-size:16px;
+}
+
+#form_add_folder button{
+    margin-top: 10px;
+}
+
+/******************form_add_file style***************************/
+#div_form_file{
+    display: none;
+}
+#form_add_file{
+    border: 1px solid #5E5E5E;
+    border-radius: 10px;
+    padding:10px;
+    margin: 10px;
+}
+#form_add_file legend{
+    margin-bottom: 5px;
+    font-size:16px;
+}
+
+#form_add_file button{
+    margin-top: 10px;
+}
+
+#div_detail_arbre_head{
+    font-size:16px;
+    font-weight: bold;
+}
+
+/******************form_modifiy_folder style**************************************/
+#form_add_folder{
+    border: 1px solid #5E5E5E;
+    border-radius: 10px;
+    padding:10px;
+    margin: 10px;
+}
+#form_add_folder button{
+    margin-top: 10px;
+}
+
+#nav_folder_file{
+    padding-left: 10px;
+}
+#form_move_elt{
+    display: none;
+}
+
+/******************form_add_link style***************************/
+#div_form_link{
+    display: none;
+}
+#form_add_link{
+    border: 1px solid #5E5E5E;
+    border-radius: 10px;
+    padding:10px;
+    margin: 10px;
+}
+#form_add_link legend{
+    margin-bottom: 5px;
+    font-size:16px;
+}
+
+#form_add_link button{
+    margin-top: 10px;
+}
+
+#liste_doc_chercher{
+    color: #006699;
+}
+
+input.form-control {
+    height: 30px !important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+select.form-control {
+    height: 30px !important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top:2px!important;
+}
+
+
+/*application de la couleur sur toutes les ecritures des tr*/
+tbody tr td{
+    color:#000000;
+}
+
+/*redefinition de la classe form-control*/
+.form-control{
+    color:#000;
+  }
+
+/****************************/
+/*ajuster le bloc de recherche*/
+.ajuster-search{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    max-width: 300px;
+    margin-left: 5px;
+}
+
+.ajuster-search-periode{
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
+/*bouton pour envoyer les recherches*/
+#recherche:hover{
+    background: #00d6b2;
+    cursor: pointer;
+}
+
+.recherche:hover{
+    background: #00d6b2;
+    cursor: pointer;
+}
+
+.list-group-item.text-center.text-capitalyze{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+/*style detail credit*/
+.detail-credit .list-group .list-group-item{
+    color:#000;
+}
+
+.detail-credit .list-group .list-group-item b{
+    color:#73879C;
+}
+
+.detail-credit tbody tr td{
+    color:#000;
+}
+
+/*fin style detail credit*/
+
+/* gestion des personnels*/
+.personnel-load-data tbody tr td{
+    color:#000000;
+}
+/* fin gestion des personnels*/
+
+/*detail personnel*/
+.detail-personnel .list-group .list-group-item{
+    color:#000;
+}
+
+.detail-personnel .list-group .list-group-item b{
+    color:#000381;
+}
+
+/*fin detail personnel*/
+
+
+/*bulletin de salaire*/
+.contour-bulletin{
+  border: solid 2px black;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.contour-bulletin.col-md-12{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.contour-bulletin.col-md-12 div{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.contour-bulletin hr{
+  border:solid 1px black;
+}
+
+/*fin bulletin de salaire*/
+
+.text-danger{
+    font-size: 13px;
+}
+
+/*suppression de la bordure top du modal-footer*/
+.modal-footer{
+    border: none !important;
+}
+
+/*mise a jour du menu*/
+.nav-md .update-menu{
+    position: fixed!important;
+    max-height: 500px!important;
+    overflow: scroll!important;
+    width: auto!important;
+    overflow-y: none;
+}
+
+.i-detail{
+    font-family: cursive, sans-serif, times;
+    color:rgb(0, 3, 101);
+}
+
+/*logo du menu principal*/
+.nav-md .logo
+{
+    width: 200px;
+    height: 50px;
+    margin-left:5px;
+}
+
+.logo
+{
+    width: 60px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+/*modification de la couleur des labels*/
+label{
+    font-weight: normal !important;
+}
+
+.service-poste-select{
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.recherche-personne td{
+    border-top: none !important;
+    padding: 0px 2px 0px 2px !important;
+}
+
+.recherche-personne tr, td{
+    /*margin: 0px;*/
+}
+
+tbody tr:hover{
+    background-color: #cee5ef!important;
+}
+
+.bold{
+    /*font-weight: bold;*/
+}
+
+thead th{
+    text-align: center;
+}
+
+/*la class spinner*/
+.spinner
+{
+    width: 100px;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    display: none;
+    z-index: 1000;
+}
+
+/*la table de recherche*/
+.table-search tbody tr:hover{
+    opacity: 1;
+    background: white!important;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.table-search{
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+.table-search tbody td{
+    border-top: none!important;
+    margin: 0!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}

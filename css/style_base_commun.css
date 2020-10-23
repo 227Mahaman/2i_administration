@@ -1,0 +1,78 @@
+
+#menu ul.nav>li>a{
+	color:#FFF;
+}
+
+ul.dropdown-menu li a:hover{
+	background-color: #5BC0DE;
+}
+
+#p_msg_confirmation{
+	font-size: 20px;
+	text-align: center; 
+
+}
+
+#form_search{
+    border: 1px solid #BCBCAF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+}
+
+#form_search #tab_search input{
+    width: 150px;
+    height: 28px;
+    border: 1px solid #BCBCAF;
+    border-radius: 2px;
+    margin-right: 10px;
+    margin-left: 3px;
+    font-size: 13px;
+}
+
+#form_search #tab_search select{
+    width: 150px;
+    height: 28px;
+    border: 1px solid #BCBCAF;
+    border-radius: 2px;
+    margin-right: 10px;
+    margin-left: 3px;
+    font-size: 13px;
+}
+
+/*mis en forme du tableau des enregistrements*/
+#tab tr td{
+    border: 1px solid #BCBCAF;
+}
+#tab tbody tr:hover{
+    background-color: #C0CDDA;
+}
+#tab tr th{
+    border: 1px solid #BCBCAF;
+}
+
+div.container{
+    width: 90%;
+}
+
+ul.breadcrumb{
+    color: #FFF;
+    background-color: #7FC97C;
+    border: 1px solid #0C326D;
+    border-radius: 0px 0px 5px 5px;
+    height: 30px;
+    padding-top: 3px;
+    font-size: 15px;
+}
+div#main_container{
+    width: 95%; 
+    background-color: #FFF; 
+    border:1.5px solid #0C326D;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 15px;
+    margin-right: auto; 
+    margin-left: auto; 
+    min-height: 100%;
+}

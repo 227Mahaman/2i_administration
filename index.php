@@ -64,17 +64,17 @@
                     and id_profil=$id_profil and bloc_menu='administration'
                     order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc"
                 ;
-                $result_simple = $pdo->query($sql);
+                $result_administration = $pdo->query($sql);
                 //initialisation de la variable de session pour le bloc administration
-                $_SESSION['bloc_simple']= array();
+                $_SESSION['bloc_administration']= array();
                 $i=0;
-                foreach($result_simple as $row_simple){
-                    $_SESSION['bloc_simple'][$i] = array('id_groupe' => $row_simple['id_groupe'],
-                        'libelle_groupe' => $row_simple['libelle_groupe'],
-                        'icon_groupe' => $row_simple['icon_groupe'],
-                        'id_action' => $row_simple['id_action'],
-                        'libelle_action' => $row_simple['libelle_action'],
-                        'url_action' => $row_simple['url_action']
+                foreach($result_administration as $row_administration){
+                    $_SESSION['bloc_administration'][$i] = array('id_groupe' => $row_administration['id_groupe'],
+                        'libelle_groupe' => $row_administration['libelle_groupe'],
+                        'icon_groupe' => $row_administration['icon_groupe'],
+                        'id_action' => $row_administration['id_action'],
+                        'libelle_action' => $row_administration['libelle_action'],
+                        'url_action' => $row_administration['url_action']
                     );
                     $i++;
                 }//fin foreach

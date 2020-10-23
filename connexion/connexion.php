@@ -5,7 +5,7 @@
 		$hostname = "localhost";
 		$user_name = "root";//postgres
 		$password = "";
-		$bd_name = "2i_test_monture";
+		$bd_name = "2i_soft_administration";
 		
 		//$connStr = "pgsql:host=".$hostname.";dbname=".$bd_name;
 		$connStr = "mysql:host=$hostname;dbname=$bd_name;charset=utf8"; 

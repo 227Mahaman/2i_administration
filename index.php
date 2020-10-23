@@ -1,14 +1,15 @@
 <?php 
-  session_start();
-  //Require les scripts
-  require_once('connexion/connexion.php');
-  require_once('./security.php');
-  if (isset($_SESSION['user-auth'])) {
+    session_start();
+    //Require les scripts
+    require_once('connexion/connexion.php');
+    require_once('./security.php');
+    if (isset($_SESSION['user-auth'])) {
 
-  } else {
-    if (!empty($_POST)) {//
+    } else {
+        if (!empty($_POST)) {//
         $data = $_POST;
         
+        }
+        require('app/views/view_login.php');
     }
-    require('app/views/view_login.php');
-}
+//include_once('app/views/view_login.php');

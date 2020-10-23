@@ -3,7 +3,15 @@
     //Require les scripts
     require_once('connexion/connexion.php');
     require_once('./security.php');
-    if (isset($_SESSION['user-auth'])) {
+    if (isset($_SESSION['id_user'])) {
+        extract($_GET);
+        if ($p == "dashboard") {//Tableau de board
+            include_once('app/views/view_dashboard.php');
+        } elseif($p == "deconnexion"){//Deconnexion
+            include_once('deconnexion.php');
+        } elseif($p == "login"){//Login
+            include_once('app/views/view_login.php');
+        }
 
     } else {//Connexion
         if(isset($_POST['connecter'])){

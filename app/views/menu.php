@@ -24,4 +24,25 @@
         ?>
     </ul>
 </li>
+<li class="parent "><a data-toggle="collapse" href="#sub-item-2">
+    <em class="fa fa-navicon">&nbsp;</em> <?= $_SESSION['bloc_configuration']['0']['libelle_groupe'];?> <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+    </a>
+    <ul class="children collapse" id="sub-item-2">
+        <?php
+        $id_current_group = 0;
+        $tab_longueur = sizeof($_SESSION['bloc_configuration']);
+        for($i=0; $i<$tab_longueur; $i++) {
+        $tab_configuration = $_SESSION['bloc_configuration'][$i];
+        ?>
+        <?php if(!empty($tab_configuration['libelle_action'])):?>
+        <li><a class="<?= $tab_configuration['icon_groupe']; ?>" href="index.php?p=<?= $tab_configuration['url_action'];?>">
+            <span class="fa fa-arrow-right">&nbsp;</span> <?= $tab_configuration['libelle_action'];?>
+        </a></li>
+        <?php endif;?>
+        <?php
+        $id_current_group = $tab_configuration['id_groupe'];
+        }//fin for
+        ?>
+    </ul>
+</li>
 <li><a href="index.php?p=deconnexion"><em class="fa fa-power-off">&nbsp;</em> Se déconnecter</a></li>

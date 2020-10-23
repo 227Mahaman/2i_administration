@@ -37,7 +37,8 @@ $title="Authentification";
                             <button id="connecter" name="connecter" type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-log-in"></span> Connecter
                             </button>
-							<!--<a href="index.html" class="btn btn-primary">Login</a></fieldset>-->
+                            <!--<a href="index.html" class="btn btn-primary">Login</a>-->
+                        </fieldset>
 					</form>
 				</div>
 			</div>

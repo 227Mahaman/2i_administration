@@ -43,17 +43,17 @@
                     and id_profil=$id_profil and bloc_menu='configuration'
                     order by libelle_groupe asc, ordre_affichage_action asc"
                 ;
-                $result_config = $pdo->query($sql);
+                $result_configuration = $pdo->query($sql);
                 //initialisation de la variable de session pour configuration
-                $_SESSION['bloc_config']= array();
+                $_SESSION['bloc_configuration']= array();
                 $i=0;
-                foreach($result_config as $row_config){
-                    $_SESSION['bloc_config'][$i] = array('id_groupe' => $row_config['id_groupe'],
-                        'libelle_groupe' => $row_config['libelle_groupe'],
-                        'icon_groupe' => $row_config['icon_groupe'],
-                        'id_action' => $row_config['id_action'],
-                        'libelle_action' => $row_config['libelle_action'],
-                        'url_action' => $row_config['url_action']
+                foreach($result_configuration as $row_configuration){
+                    $_SESSION['bloc_configuration'][$i] = array('id_groupe' => $row_configuration['id_groupe'],
+                        'libelle_groupe' => $row_configuration['libelle_groupe'],
+                        'icon_groupe' => $row_configuration['icon_groupe'],
+                        'id_action' => $row_configuration['id_action'],
+                        'libelle_action' => $row_configuration['libelle_action'],
+                        'url_action' => $row_configuration['url_action']
                     );
                     $i++;
                 }//fin foreach

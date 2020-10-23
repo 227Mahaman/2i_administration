@@ -57,24 +57,25 @@
                     );
                     $i++;
                 }//fin foreach
-                //**********récupération de la liste des actions autorisées du bloc simple*********************
+                //**********2.récupération de la liste des actions autorisées du bloc administration*********************
                 $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
-                        FROM action a, profil_has_action p, groupe_action g
-                        WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
-                        and id_profil=$id_profil and bloc_menu='simple'
-                        order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
+                    FROM action a, profil_has_action p, groupe_action g
+                    WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                    and id_profil=$id_profil and bloc_menu='administration'
+                    order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc"
+                ;
                 $result_simple = $pdo->query($sql);
-                //initialisation de la variable de session pour le bloc simple
+                //initialisation de la variable de session pour le bloc administration
                 $_SESSION['bloc_simple']= array();
                 $i=0;
                 foreach($result_simple as $row_simple){
                     $_SESSION['bloc_simple'][$i] = array('id_groupe' => $row_simple['id_groupe'],
-                                                            'libelle_groupe' => $row_simple['libelle_groupe'],
-                                                            'icon_groupe' => $row_simple['icon_groupe'],
-                                                            'id_action' => $row_simple['id_action'],
-                                                            'libelle_action' => $row_simple['libelle_action'],
-                                                            'url_action' => $row_simple['url_action']
-                                                    );
+                        'libelle_groupe' => $row_simple['libelle_groupe'],
+                        'icon_groupe' => $row_simple['icon_groupe'],
+                        'id_action' => $row_simple['id_action'],
+                        'libelle_action' => $row_simple['libelle_action'],
+                        'url_action' => $row_simple['url_action']
+                    );
                     $i++;
                 }//fin foreach
                 header('Location: index.php?p=dashboard');

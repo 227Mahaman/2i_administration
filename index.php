@@ -11,6 +11,8 @@
             include_once('deconnexion.php');
         } elseif($p == "login"){//Login
             include_once('app/views/view_login.php');
+        } elseif($p == "profil"){//Profil
+            include_once('app/views/view_profil.php');
         }
 
     } else {//Connexion

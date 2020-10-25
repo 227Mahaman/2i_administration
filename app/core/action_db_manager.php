@@ -1,6 +1,6 @@
 <?php
-include_once("controle_session.php");    
-include_once("../connexion/connexion.php");
+//include_once("../controle_session.php");    
+include_once("./connexion/connexion.php");
 /* 
  * fonctions de manipultion des actions et des groupes d'action
  */

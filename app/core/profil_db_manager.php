@@ -6,13 +6,13 @@ include_once("./connexion/connexion.php");
  */
 
 //*********fonction d'insertions
-function insert_profil($libelle_profil, $id_user_conn, $date){
+function insert_profil($libelle_profil, $id_user_conn){
     $pdo = $GLOBALS['connexion'];
     try
     {
         $pdo->beginTransaction();
-        $pdo->exec("insert into profil(libelle_profil, created_by, created_at)
-                    values ('$libelle_profil', $id_user_conn, '$date')
+        $pdo->exec("insert into profil(libelle_profil, created_by)
+                    values ('$libelle_profil', $id_user_conn)
                     ");
         $pdo->commit();
         return true;

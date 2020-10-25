@@ -3,7 +3,33 @@ include_once("app/core/profil_db_manager.php");
 include_once("app/core/action_db_manager.php");
     $title="Profil";
 	ob_start();
-	$records = select_profil(true);
+	//enregistrement des données du formulaire dans la base
+	if (isset($_POST['bouton_envoyer'])) {
+		$libelle_profil = echapper($_POST['libelle_profil']);
+		
+		$id_user_conn = $_SESSION['id_user'];
+		//$date = date("Y-m-d H:i:s");
+		
+		$result = insert_profil($libelle_profil, $id_user_conn);
+		
+		// if ($result == true) {
+		// 	//recuperation de l'id du profil créé
+		// 	$records = $pdo->query("SELECT max(id_profil) as id_profil
+		// 	FROM profil
+		// 	WHERE libelle_profil='$libelle_profil' ");
+		// 	$row_id_profil = $records->fetch();
+		// 	$id_profil = $row_id_profil['id_profil'];
+			
+		// 	//redirection vers la page de definition des privileges des profils
+		// 	header("location:profil_definir_action.php?id_profil=$id_profil&libelle_profil=$libelle_profil");
+		// } else {
+		// 	$msg = "Echec de l'enregistrement, veuillez reprendre svp.";
+		// 	header("location:profil_nouveau.php?msg=$msg&type_msg=0");
+		// 	//on arrête l'exécution s'il y a du code après
+		// 	exit();
+		// }
+	}//fin if isset bouton_enregistrer
+	
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row">
@@ -63,8 +89,9 @@ include_once("app/core/action_db_manager.php");
 								<th>Action</th>
 							</thead>
 							<tbody>
-								<?php 
+								<?php
 									$i = 0;
+									$records = select_profil(true);
 									foreach($records as $row) {
 								?>
 								<tr>

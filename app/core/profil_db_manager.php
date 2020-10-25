@@ -76,7 +76,21 @@ function update_profil($id_profil,$libelle_profil, $id_user_conn, $date){
 
 //fonctions de suppression des utilisateurs
 function delete_profil($id){   
-    
+    $pdo = $GLOBALS['connexion'];
+    try
+    {
+        $pdo->beginTransaction();
+        $pdo->exec("DELETE FROM profil WHERE id_profil ='$id'");
+        $pdo->commit();
+        
+        return true;
+    }
+    catch(Exception $e) //en cas d'erreur
+    {
+        //on annule la transation
+        $pdo->rollback();
+        return false;
+    }
 }//fin fonction delete_profil
 
 

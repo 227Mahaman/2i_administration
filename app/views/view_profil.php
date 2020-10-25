@@ -118,7 +118,7 @@ include_once("app/core/action_db_manager.php");
 										</a>
 										<form method="post">
 											<input type="hidden" name="id_profil" value="<?= htmlentities(stripcslashes($row['id_profil'])); ?>">
-											<button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+											<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 										</form>
 									</td>
 								</tr>

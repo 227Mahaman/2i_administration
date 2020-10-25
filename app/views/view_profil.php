@@ -3,6 +3,7 @@ include_once("app/core/profil_db_manager.php");
 include_once("app/core/action_db_manager.php");
     $title="Profil";
 	ob_start();
+	$profil = "";
 	//enregistrement des données du formulaire dans la base
 	if (isset($_POST['bouton_envoyer'])) {
 		$libelle_profil = echapper($_POST['libelle_profil']);
@@ -29,7 +30,16 @@ include_once("app/core/action_db_manager.php");
 		// 	exit();
 		// }
 	}//fin if isset bouton_enregistrer
-	
+	if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+		$id = $_GET['modif'];
+		$profil = select_profil_one($id)->fetch();
+		if (isset($_POST['btn_update'])) {
+			$libelle = echapper($_POST['libelle_profil']);
+			$date = date("Y-m-d H:i:s");
+			$update = update_profil($id, $libelle, $_SESSION['id_user'],	$date);
+			header('Location: index.php?p=profil');
+		}
+	}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row">
@@ -54,7 +64,7 @@ include_once("app/core/action_db_manager.php");
 					<form role="form" method="post">
 						<div class="form-group">
 							<label>Libellé</label>
-							<input class="form-control" name="libelle_profil" placeholder="Titre du profil">
+							<input class="form-control" name="libelle_profil" value="<?= ($profil)? $profil['libelle_profil'] : "" ?>" placeholder="Titre du profil">
 						</div>
 						<!--<div class="form-group">
 							<label>Password</label>
@@ -69,7 +79,7 @@ include_once("app/core/action_db_manager.php");
 								<option>Option 4</option>
 							</select>
 						</div>-->
-						<button type="submit" id="bouton_envoyer" name="bouton_envoyer" class="btn btn-primary">Enregistrer</button>
+						<button type="submit" id="bouton_envoyer" name="<?= ($_GET['modif'])? "btn_update" : "bouton_envoyer";?>" class="btn btn-primary">Enregistrer</button>
 						<!--<button type="reset" class="btn btn-default">Reset Button</button>-->
 					</form>
 				</div>

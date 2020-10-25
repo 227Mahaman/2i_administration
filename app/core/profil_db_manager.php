@@ -49,7 +49,7 @@ function select_profil_one($id_profil){
     $pdo = $GLOBALS['connexion'];
     $records = $pdo->query("select * from profil where id_profil = $id_profil");
     return $records;
-}//fin fonction select_profil_per_page
+}//fin fonction select_profil_one
 
 
 //fonctions de mis à jour des profils

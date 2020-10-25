@@ -29,8 +29,7 @@ include_once("app/core/action_db_manager.php");
 		// 	//on arrête l'exécution s'il y a du code après
 		// 	exit();
 		// }
-	}//fin if isset bouton_enregistrer
-	if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 		$id = $_GET['modif'];
 		$profil = select_profil_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
@@ -38,6 +37,12 @@ include_once("app/core/action_db_manager.php");
 			$date = date("Y-m-d H:i:s");
 			$update = update_profil($id, $libelle, $_SESSION['id_user'],	$date);
 			header('Location: index.php?p=profil');
+		}
+	} elseif(isset($_POST['id_profil'])){
+		$id = $_POST['id_profil'];
+		$delete = delete_profil($id);
+		if($delete){
+			header("Location: index.php?p=profil");
 		}
 	}
 ?>

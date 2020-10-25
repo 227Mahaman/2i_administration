@@ -113,6 +113,9 @@ include_once("app/core/action_db_manager.php");
 								<td><?= ++$i;?></td>
 									<td><?= htmlentities(stripcslashes($row['libelle_profil']));?></td>
 									<td>
+										<a href="index.php?p=menu&profil=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" class="btn btn-success">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
 										<a href="index.php?p=profil&modif=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" class="btn btn-primary">
 											<i class="fa fa-pencil"></i>
 										</a>

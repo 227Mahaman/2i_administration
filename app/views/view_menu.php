@@ -43,8 +43,7 @@
 		// 		header('Location: index.php?p=menu&role='.$role);
 		// 	}
 		// }
-		//$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
-		//$actionProfil = json_decode($actionProfil, true);
+		//$actionProfil = select_all_profil_menus($profil)->fetch();
 	}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -125,6 +124,7 @@
 									$i = 0;
 									$records = select_all_menus();
 									foreach($records as $row) {
+										$actProfil = select_profil_menu($_GET['profil'],$row['id_action'])->fetch();
 								?>
 								<tr>
 								<td><?= ++$i;?></td>
@@ -139,8 +139,8 @@
                                                 <div class="checkbox">
                                                 <label>
                                                     <input type="hidden" name="id_profil" value="<?= $_GET['profil']; ?>">
-                                                    <!-- name="menu" onchange="submit()" -->
-                                                    <input class="module_is_checked" onchange="addMenuProfil(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?//= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <!-- name="menu" onchange="submit()" || onchange="addMenuProfil(this)" -->
+                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>

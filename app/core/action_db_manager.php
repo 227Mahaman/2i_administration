@@ -128,5 +128,13 @@ function insert_menu($groupe, $libelle, $description, $url, $ordre){
     
 }//fin fonction insert_menu
 
+function select_profil_menu($profil,$menu){
+    $pdo = $GLOBALS['connexion'];
+    $records = $pdo->query("SELECT * FROM action a, profil_has_action p, profil f 
+        WHERE a.id_action='$menu' AND a.id_action=p.id_action AND p.id_profil=f.id_profil AND f.id_profil='$profil'"
+    );
+    return $records;
+}//fin fonction select_action
+
 
 

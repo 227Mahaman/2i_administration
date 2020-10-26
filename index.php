@@ -13,6 +13,8 @@
             include_once('app/views/view_login.php');
         } elseif($p == "profil"){//Profil
             include_once('app/views/view_profil.php');
+        } elseif($p == "module"){//Module
+            include_once('app/views/view_module.php');
         }
 
     } else {//Connexion

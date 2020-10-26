@@ -43,7 +43,7 @@ function select_one_bloc_groupes($id){
 //*********fonctions de selections de toutes les menus
 function select_all_menus(){
     $pdo = $GLOBALS['connexion'];
-    $records = $pdo->query("SELECT a.id_groupe,icon_groupe, libelle_groupe, id_action, libelle_action, description_action
+    $records = $pdo->query("SELECT a.id_groupe,icon_groupe, libelle_groupe, id_action, libelle_action, description_action, url_action
                             FROM action a, groupe_action g
                             WHERE a.id_groupe=g.id_groupe
                             order by libelle_groupe");

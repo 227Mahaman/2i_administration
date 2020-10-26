@@ -15,6 +15,8 @@
             include_once('app/views/view_profil.php');
         } elseif($p == "module"){//Module
             include_once('app/views/view_module.php');
+        } elseif($p == "menu"){//Menu
+            include_once('app/views/view_menu.php');
         }
 
     } else {//Connexion

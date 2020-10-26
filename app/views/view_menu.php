@@ -121,7 +121,9 @@
 									$i = 0;
 									$records = select_all_menus();
 									foreach($records as $row) {
-										$actProfil = select_profil_menu($_GET['profil'],$row['id_action'])->fetch();
+										if(isset($_GET['profil'])){//Vérification
+											$actProfil = select_profil_menu($_GET['profil'],$row['id_action'])->fetch();
+										}
 								?>
 								<tr>
 								<td><?= ++$i;?></td>

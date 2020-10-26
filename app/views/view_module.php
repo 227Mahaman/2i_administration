@@ -19,7 +19,7 @@
 			$libelle = echapper($_POST['libelle_groupe']);
 			$icon = echapper($_POST['icon_groupe']);
 			$bloc = echapper($_POST['bloc_menu']);
-			$ordre = echapper($_POST['ordre__affichage_groupe']);
+			$ordre = echapper($_POST['ordre_affichage_groupe']);
 			$update = update_module($id, $libelle, $icon, $bloc, $ordre);
 			header('Location: index.php?p=module');
 		}

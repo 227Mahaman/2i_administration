@@ -16,12 +16,13 @@
 		$id = $_GET['modif'];
 		$menu = select_menu_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
-			$libelle = echapper($_POST['libelle_groupe']);
-			$icon = echapper($_POST['icon_groupe']);
-			$bloc = echapper($_POST['bloc_menu']);
-			$ordre = echapper($_POST['ordre__affichage_groupe']);
-			$update = update_menu($id, $libelle, $icon, $bloc, $ordre);
-			header('Location: index.php?p=module');
+			$groupe = echapper($_POST['id_groupe']);
+			$libelle = echapper($_POST['libelle_action']);
+			$description = echapper($_POST['description_action']);
+			$url = echapper($_POST['url_action']);
+			$ordre = echapper($_POST['ordre_affichage_action']);
+			$update = update_menu($id, $groupe, $libelle, $description, $url, $ordre);
+			header('Location: index.php?p=menu');
 		}
 	} elseif(isset($_POST['id_groupe'])){
 		$id = $_POST['id_groupe'];

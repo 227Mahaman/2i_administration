@@ -61,5 +61,26 @@ function select_all_profil_menus($id){
     return $records;
 }//fin fonction select_action
 
+//fonctions de mis à jour des menus
+function update_menu($id, $groupe, $libelle, $description, $url, $ordre){
+    $pdo = $GLOBALS['connexion'];
+    try
+    {
+        $pdo->beginTransaction();
+        $pdo->exec("UPDATE action
+            SET id_groupe = '$groupe', libelle_action='$libelle', description_action = '$description', url_action = '$url', ordre_affichage_action = '$ordre'
+            WHERE id_action = $id
+        ");
+        $pdo->commit();
+        return true;
+    }
+    catch(Exception $e) //en cas d'erreur
+    {
+        //on annule la transation
+        $pdo->rollback();
+        return false;
+    }
+}//fin fonction update_menu
+
 
 

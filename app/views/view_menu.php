@@ -5,7 +5,7 @@
 	ob_start();
 	$menu = "";
 	//enregistrement des données du formulaire dans la base
-	if (isset($_POST['bouton_envoyer'])) {
+	if (isset($_POST['bouton_envoyer'])) {//Ajout menu
 		$groupe = echapper($_POST['id_groupe']);
 		$libelle = echapper($_POST['libelle_action']);
 		$description = echapper($_POST['description_action']);
@@ -13,7 +13,7 @@
 		$ordre = echapper($_POST['ordre_affichage_action']);
 		$result = insert_menu($groupe, $libelle, $description, $url, $ordre);
 		
-	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modification de menu
 		$id = $_GET['modif'];
 		$menu = select_menu_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
@@ -25,7 +25,7 @@
 			$update = update_menu($id, $groupe, $libelle, $description, $url, $ordre);
 			header('Location: index.php?p=menu');
 		}
-	} elseif(isset($_POST['id_action'])){
+	} elseif(isset($_POST['id_action'])){//Suppression de menu
 		$id = $_POST['id_action'];
 		$delete = delete_menu($id);
 		if($delete){

@@ -82,5 +82,11 @@ function update_menu($id, $groupe, $libelle, $description, $url, $ordre){
     }
 }//fin fonction update_menu
 
+function select_menu_one($id){
+    $pdo = $GLOBALS['connexion'];
+    $records = $pdo->query("SELECT * FROM action WHERE id_action = $id");
+    return $records;
+}//fin fonction select_menu_one
+
 
 

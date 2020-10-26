@@ -33,17 +33,14 @@
 		}
 	} elseif (isset($_GET['profil'])){//Rôle (Profil)
 		extract($_GET);
+		if(!empty($_POST)){
+			$menu = $_POST['menu'];
+			$add = insert_menu_profil($profil, $menu);
+			if($add){
+				header('Location: index.php?p=menu&profil='.$profil);
+			}
+		}
 		$profil = select_profil_one($profil)->fetch();
-		// if(!empty($_POST)){
-		// 	$data = $_POST;
-		// 	$url = ROOT_PATH."index.php/addMenuToProfil/".$role;
-		// 	$add = App::file_post_contents($url, $data);
-		// 	var_dump($add);die;
-		// 	if($add){
-		// 		header('Location: index.php?p=menu&role='.$role);
-		// 	}
-		// }
-		//$actionProfil = select_all_profil_menus($profil)->fetch();
 	}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -138,7 +135,7 @@
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
-                                                    <input type="hidden" name="id_profil" value="<?= $_GET['profil']; ?>">
+                                                    <!--<input type="hidden" name="id_profil" value="<?//= $_GET['profil']; ?>">-->
                                                     <!-- name="menu" onchange="submit()" || onchange="addMenuProfil(this)" -->
                                                     <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>

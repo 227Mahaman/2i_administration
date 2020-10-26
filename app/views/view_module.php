@@ -1,33 +1,33 @@
 <?php
-include_once("app/core/module_db_manager.php");
-//include_once("app/core/action_db_manager.php");
+	include_once("app/core/module_db_manager.php");
     $title="Module";
 	ob_start();
 	$module = "";
 	//enregistrement des données du formulaire dans la base
 	if (isset($_POST['bouton_envoyer'])) {
-		$libelle_profil = echapper($_POST['libelle_profil']);
-		
-		$id_user_conn = $_SESSION['id_user'];
-		//$date = date("Y-m-d H:i:s");
-		
-		$result = insert_profil($libelle_profil, $id_user_conn);
+		$libelle = echapper($_POST['libelle_groupe']);
+		$icon = echapper($_POST['icon_groupe']);
+		$bloc = echapper($_POST['bloc_menu']);
+		$ordre = echapper($_POST['ordre_affichage_groupe']);
+		$result = insert_module($libelle, $icon, $bloc, $ordre);
 		//var_dump($result);die;
 		
 	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 		$id = $_GET['modif'];
-		$module = select_profil_one($id)->fetch();
+		$module = select_module_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
-			$libelle = echapper($_POST['libelle_profil']);
-			$date = date("Y-m-d H:i:s");
-			$update = update_profil($id, $libelle, $_SESSION['id_user'],	$date);
-			header('Location: index.php?p=profil');
+			$libelle = echapper($_POST['libelle_groupe']);
+			$icon = echapper($_POST['icon_groupe']);
+			$bloc = echapper($_POST['bloc_menu']);
+			$ordre = echapper($_POST['ordre__affichage_groupe']);
+			$update = update_module($id, $libelle, $icon, $bloc, $ordre);
+			header('Location: index.php?p=module');
 		}
-	} elseif(isset($_POST['id_profil'])){
-		$id = $_POST['id_profil'];
-		$delete = delete_profil($id);
+	} elseif(isset($_POST['id_groupe'])){
+		$id = $_POST['id_groupe'];
+		$delete = delete_module($id);
 		if($delete){
-			header("Location: index.php?p=profil");
+			header("Location: index.php?p=module");
 		}
 	}
 ?>

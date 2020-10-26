@@ -122,7 +122,7 @@
 							<tbody>
 								<?php
 									$i = 0;
-									if($_GET['detail']){
+									if(isset($_GET['detail'])){
 										$records = select_all_profil_menus($_GET['detail']);
 									} else{
 										$records = select_all_menus();

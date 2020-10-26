@@ -136,5 +136,25 @@ function select_profil_menu($profil,$menu){
     return $records;
 }//fin fonction select_action
 
+function insert_menu_profil($profil, $menu){
+    $pdo = $GLOBALS['connexion'];
+    try
+    {
+        $pdo->beginTransaction();
+        $pdo->exec("INSERT INTO profil_has_action (id_profil, id_action)
+            VALUES ('$profil', '$menu')
+        ");
+        $pdo->commit();
+        return true;
+    }
+    catch(Exception $e) //en cas d'erreur
+    {
+        //on annule la transaction
+        $pdo->rollback();
+        return false;
+    }
+    
+}//fin fonction insert_menu
+
 
 

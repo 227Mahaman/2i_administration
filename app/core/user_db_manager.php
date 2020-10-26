@@ -54,19 +54,19 @@ function select_user_one($id_user){
 
 
 //fonctions de mis à jour des users
-function update_user($id_user, $id_profil, $nom, $prenom, $login, $password, $id_user_conn, $date){
+function update_user($id_user, $id_profil, $nom, $prenom, $login, $password, $date){
     $pdo = $GLOBALS['connexion'];
     try
     {
         $pdo->beginTransaction();
-        $pdo->exec("update users set nom_user='$nom', prenom_user='$prenom', login='$login', id_profil=$id_profil, modified_by=$id_user_conn, modified_at='$date'
-                     where id_user = $id_user
+        $pdo->exec("UPDATE user SET nom_user='$nom', prenom_user='$prenom', login='$login', id_profil='$id_profil', modified_at='$date'
+                    WHERE id_user = '$id_user'
                     ");
         //maj du mot de passe au cas ou il n'est pas vide
         if($password != "")
         {
             $password = md5($password);
-            $pdo->exec("update users set password='$password' where id_user = $id_user ");
+            $pdo->exec("UPDATE user SET password='$password' WHERE id_user = '$id_user' ");
         }
         $pdo->commit();
 

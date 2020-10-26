@@ -20,12 +20,14 @@
 		$id = $_GET['modif'];
 		$user = select_user_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
-			$libelle = echapper($_POST['libelle_groupe']);
-			$icon = echapper($_POST['icon_groupe']);
-			$bloc = echapper($_POST['bloc_menu']);
-			$ordre = echapper($_POST['ordre_affichage_groupe']);
-			$update = update_user($id, $libelle, $icon, $bloc, $ordre);
-			header('Location: index.php?p=user');
+			$profil = echapper($_POST['id_profil']);
+			$nom = echapper($_POST['nom_user']);
+			$prenom = echapper($_POST['prenom_user']);
+			$login = echapper($_POST['login']);
+			$password = echapper(md5($_POST['password']));
+			$date = date("Y-m-d H:i:s");
+			$update = update_user($id, $profil, $nom, $prenom, $login, $password, $date);
+			header('Location: index.php?p=lstUser');
 		}
 	} elseif(isset($_POST['id_groupe'])){
 		$id = $_POST['id_groupe'];
@@ -79,7 +81,7 @@
 									$records = select_profil(true);
 									foreach($records as $row) {
 								?>
-								<option value="<?= $row['id_profil']?>"><?= $row['libelle_profil']?></option>
+								<option value="<?= $row['id_profil']?>" <?= ($user['id_profil']==$row['id_profil']) ? "selected": ""; ?>><?= $row['libelle_profil']?></option>
 								<?php } ?>
 							</select>
 						</div>

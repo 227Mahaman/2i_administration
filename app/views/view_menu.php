@@ -24,11 +24,11 @@
 			$update = update_menu($id, $groupe, $libelle, $description, $url, $ordre);
 			header('Location: index.php?p=menu');
 		}
-	} elseif(isset($_POST['id_groupe'])){
-		$id = $_POST['id_groupe'];
+	} elseif(isset($_POST['id_action'])){
+		$id = $_POST['id_action'];
 		$delete = delete_menu($id);
 		if($delete){
-			header("Location: index.php?p=module");
+			header("Location: index.php?p=menu");
 		}
 	}
 ?>

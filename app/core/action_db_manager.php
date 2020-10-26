@@ -88,5 +88,24 @@ function select_menu_one($id){
     return $records;
 }//fin fonction select_menu_one
 
+//fonctions de suppression de module
+function delete_menu($id){   
+    $pdo = $GLOBALS['connexion'];
+    try
+    {
+        $pdo->beginTransaction();
+        $pdo->exec("DELETE FROM action WHERE id_action ='$id'");
+        $pdo->commit();
+        
+        return true;
+    }
+    catch(Exception $e) //en cas d'erreur
+    {
+        //on annule la transation
+        $pdo->rollback();
+        return false;
+    }
+}//fin fonction delete_menu
+
 
 

@@ -12,6 +12,7 @@ include_once("app/core/action_db_manager.php");
 		//$date = date("Y-m-d H:i:s");
 		
 		$result = insert_profil($libelle_profil, $id_user_conn);
+		//var_dump($result);die;
 		
 		// if ($result == true) {
 		// 	//recuperation de l'id du profil créé
@@ -84,7 +85,7 @@ include_once("app/core/action_db_manager.php");
 								<option>Option 4</option>
 							</select>
 						</div>-->
-						<button type="submit" id="bouton_envoyer" name="<?= ($_GET['modif'])? "btn_update" : "bouton_envoyer";?>" class="btn btn-primary">Enregistrer</button>
+						<button type="submit" id="bouton_envoyer" name="<?= (isset($_GET['modif']))? "btn_update" : "bouton_envoyer";?>" class="btn btn-primary">Enregistrer</button>
 						<!--<button type="reset" class="btn btn-default">Reset Button</button>-->
 					</form>
 				</div>

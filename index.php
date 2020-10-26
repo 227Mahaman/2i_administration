@@ -19,6 +19,8 @@
             include_once('app/views/view_menu.php');
         } elseif($p == "addUser"){//AddUser
             include_once('app/views/view_addUser.php');
+        } elseif($p == "lstUser"){//lstUser
+            include_once('app/views/view_lstUser.php');
         }
 
     } else {//Connexion

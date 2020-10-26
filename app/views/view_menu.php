@@ -2,7 +2,7 @@
 	include_once("app/core/action_db_manager.php");
     $title="Menu";
 	ob_start();
-	$module = "";
+	$menu = "";
 	//enregistrement des données du formulaire dans la base
 	if (isset($_POST['bouton_envoyer'])) {
 		$libelle = echapper($_POST['libelle_groupe']);
@@ -14,18 +14,18 @@
 		
 	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 		$id = $_GET['modif'];
-		$module = select_module_one($id)->fetch();
+		$menu = select_menu_one($id)->fetch();
 		if (isset($_POST['btn_update'])) {
 			$libelle = echapper($_POST['libelle_groupe']);
 			$icon = echapper($_POST['icon_groupe']);
 			$bloc = echapper($_POST['bloc_menu']);
 			$ordre = echapper($_POST['ordre__affichage_groupe']);
-			$update = update_module($id, $libelle, $icon, $bloc, $ordre);
+			$update = update_menu($id, $libelle, $icon, $bloc, $ordre);
 			header('Location: index.php?p=module');
 		}
 	} elseif(isset($_POST['id_groupe'])){
 		$id = $_POST['id_groupe'];
-		$delete = delete_module($id);
+		$delete = delete_menu($id);
 		if($delete){
 			header("Location: index.php?p=module");
 		}
@@ -54,35 +54,32 @@
 					<form role="form" method="post">
 						<div class="form-group">
 							<label>Libellé</label>
-							<input class="form-control" name="libelle_groupe" value="<?= ($module)? $module['libelle_groupe'] : "" ?>" placeholder="Titre du module (Groupe)">
+							<input class="form-control" name="libelle_action" value="<?= ($menu)? $menu['libelle_action'] : "" ?>" placeholder="Titre du menu (action)">
 						</div>
 						<div class="form-group">
-							<label>Icon</label>
-							<input class="form-control" name="icon_groupe" value="<?= ($module)? $module['icon_groupe'] : "" ?>" placeholder="fa fa-example">
+							<label>Description</label>
+							<input class="form-control" name="description_action" value="<?= ($menu)? $menu['description_action'] : "" ?>" placeholder="Description du menu">
 						</div>
 						<div class="form-group">
-							<label>Bloc</label>
-							<input class="form-control" name="bloc_menu" value="<?= ($module)? $module['bloc_menu'] : "" ?>" placeholder="Bloc du menu">
+							<label>Url</label>
+							<input class="form-control" name="url_action" value="<?= ($menu)? $menu['url_action'] : "" ?>" placeholder="URL du menu">
 						</div>
 						<div class="form-group">
 							<label>Ordre</label>
-							<input class="form-control" name="ordre_affichage_groupe" value="<?= ($module)? $module['ordre_affichage_groupe'] : "" ?>" placeholder="Ordre affichage groupe">
-						</div>
-						<!--<div class="form-group">
-							<label>Password</label>
-							<input type="password" class="form-control">
+							<input class="form-control" name="ordre_affichage_action" value="<?= ($menu)? $menu['ordre_affichage_action'] : "" ?>" placeholder="ordre affichage action">
 						</div>
 						<div class="form-group">
-							<label>Selects</label>
+							<label>Groupe (Module)</label>
 							<select class="form-control">
-								<option>Option 1</option>
-								<option>Option 2</option>
-								<option>Option 3</option>
-								<option>Option 4</option>
+								<?php
+									$records = select_all_groupes();
+									foreach($records as $row) {
+								?>
+									<option <?= (isset($_GET['modif']) && $value['id_groupe'] == $menu['id_groupe'])? "selected" : "" ?> value="<?= $row['id_groupe']?>"><?= $row['libelle_groupe']?></option>
+								<?php } ?>
 							</select>
-						</div>-->
+						</div>
 						<button type="submit" id="bouton_envoyer" name="<?= (isset($_GET['modif']))? "btn_update" : "bouton_envoyer";?>" class="btn btn-primary">Enregistrer</button>
-						<!--<button type="reset" class="btn btn-default">Reset Button</button>-->
 					</form>
 				</div>
 			</div>

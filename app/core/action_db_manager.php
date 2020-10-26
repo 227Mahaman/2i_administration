@@ -154,7 +154,15 @@ function insert_menu_profil($profil, $menu){
         return false;
     }
     
-}//fin fonction insert_menu
+}//fin fonction insert_menu_profil
+
+function verification_profil_menu($profil,$menu){
+    $pdo = $GLOBALS['connexion'];
+    $records = $pdo->prepare("SELECT * FROM action
+        WHERE id_profil='$profil' AND id_action='$menu'"
+    );
+    return $records;
+}//fin fonction select_action
 
 
 

@@ -1,15 +1,19 @@
 <?php
 	include_once("app/core/user_db_manager.php");
+	include_once("app/core/profil_db_manager.php");
     $title="Ajouter Utilisateur";
 	ob_start();
 	$user = "";
 	//enregistrement des données du formulaire dans la base
 	if (isset($_POST['bouton_envoyer'])) {
-		$libelle = echapper($_POST['libelle_groupe']);
-		$icon = echapper($_POST['icon_groupe']);
-		$bloc = echapper($_POST['bloc_menu']);
-		$ordre = echapper($_POST['ordre_affichage_groupe']);
-		$result = insert_user($libelle, $icon, $bloc, $ordre);
+		$profil = echapper($_POST['id_profil']);
+		$nom = echapper($_POST['nom_user']);
+		$prenom = echapper($_POST['prenom_user']);
+		$login = echapper($_POST['login']);
+		$password = echapper(md5($_POST['password']));
+		$user_conn = $_SESSION['id_user'];
+      	//$date = date("Y-m-d H:i:s");
+		$result = insert_user($profil, $nom, $prenom, $login, $password, $user_conn);
 		//var_dump($result);die;
 		
 	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {

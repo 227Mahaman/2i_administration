@@ -1,19 +1,19 @@
 <?php
 // include_once("controle_session.php");
-include_once("../connexion/connexion.php");
+include_once("./connexion/connexion.php");
 /*
  * fonctions de manipultion des users
  */
 
 //*********fonction d'insertions
-function insert_user($id_profil, $nom, $prenom, $login, $password, $id_user_conn, $date){
+function insert_user($id_profil, $nom, $prenom, $login, $password, $id_user_conn){
     $pdo = $GLOBALS['connexion'];
     try
     {
         $pdo->beginTransaction();
-        $pdo->exec("insert into users(nom_user, prenom_user, login, password, id_profil, created_by, created_at)
-                    values ('$nom', '$prenom', '$login', '$password', $id_profil, $id_user_conn, '$date')
-                    ");
+        $pdo->exec("INSERT INTO user(nom_user, prenom_user, login, password, id_profil, created_by)
+            VALUES ('$nom', '$prenom', '$login', '$password', '$id_profil', '$id_user_conn')
+        ");
         $pdo->commit();
         return true;
     }

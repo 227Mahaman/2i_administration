@@ -12,24 +12,6 @@ include_once("app/core/action_db_manager.php");
 		//$date = date("Y-m-d H:i:s");
 		
 		$result = insert_profil($libelle_profil, $id_user_conn);
-		//var_dump($result);die;
-		
-		// if ($result == true) {
-		// 	//recuperation de l'id du profil créé
-		// 	$records = $pdo->query("SELECT max(id_profil) as id_profil
-		// 	FROM profil
-		// 	WHERE libelle_profil='$libelle_profil' ");
-		// 	$row_id_profil = $records->fetch();
-		// 	$id_profil = $row_id_profil['id_profil'];
-			
-		// 	//redirection vers la page de definition des privileges des profils
-		// 	header("location:profil_definir_action.php?id_profil=$id_profil&libelle_profil=$libelle_profil");
-		// } else {
-		// 	$msg = "Echec de l'enregistrement, veuillez reprendre svp.";
-		// 	header("location:profil_nouveau.php?msg=$msg&type_msg=0");
-		// 	//on arrête l'exécution s'il y a du code après
-		// 	exit();
-		// }
 	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 		$id = $_GET['modif'];
 		$profil = select_profil_one($id)->fetch();
@@ -66,27 +48,12 @@ include_once("app/core/action_db_manager.php");
 			<div class="panel panel-default form">
 				<div class="panel-heading">Renseignez les informations</div>
 				<div class="panel-body">
-					<!--<div class="col-md-6">-->
 					<form role="form" method="post">
 						<div class="form-group">
 							<label>Libellé</label>
 							<input class="form-control" name="libelle_profil" value="<?= ($profil)? $profil['libelle_profil'] : "" ?>" placeholder="Titre du profil">
 						</div>
-						<!--<div class="form-group">
-							<label>Password</label>
-							<input type="password" class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Selects</label>
-							<select class="form-control">
-								<option>Option 1</option>
-								<option>Option 2</option>
-								<option>Option 3</option>
-								<option>Option 4</option>
-							</select>
-						</div>-->
 						<button type="submit" id="bouton_envoyer" name="<?= (isset($_GET['modif']))? "btn_update" : "bouton_envoyer";?>" class="btn btn-primary">Enregistrer</button>
-						<!--<button type="reset" class="btn btn-default">Reset Button</button>-->
 					</form>
 				</div>
 			</div>
@@ -96,8 +63,6 @@ include_once("app/core/action_db_manager.php");
 			<div class="panel panel-default">
 				<div class="panel-heading">Données</div>
 				<div class="panel-body">
-					<!--<div class="col-md-12">-->
-						<!--<table class="table table-bordered table-striped table-condensed tbody">-->
 						<table class="table table-condensed">
 							<thead>
 								<th>#</th>
@@ -114,15 +79,18 @@ include_once("app/core/action_db_manager.php");
 								<td><?= ++$i;?></td>
 									<td><?= htmlentities(stripcslashes($row['libelle_profil']));?></td>
 									<td>
-										<a href="index.php?p=menu&profil=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" class="btn btn-success">
+										<a href="index.php?p=menu&profil=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" title="Ajouter des menu au profil" class="btn btn-success">
                                             <i class="fa fa-plus"></i>
+										</a>
+										<a href="index.php?p=menu&detail=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" title="Voir l'ensemble des menu" class="btn btn-info">
+                                            <i class="fa fa-eye"></i>
                                         </a>
-										<a href="index.php?p=profil&modif=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" class="btn btn-primary">
+										<a href="index.php?p=profil&modif=<?= htmlentities(stripcslashes($row['id_profil'])); ?>" title="Modifier le profil" class="btn btn-primary">
 											<i class="fa fa-pencil"></i>
 										</a>
 										<form method="post">
 											<input type="hidden" name="id_profil" value="<?= htmlentities(stripcslashes($row['id_profil'])); ?>">
-											<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+											<button type="submit" title="Supprimer le profil" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 										</form>
 									</td>
 								</tr>

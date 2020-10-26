@@ -3,8 +3,8 @@
     //Require les scripts
     require_once('connexion/connexion.php');
     require_once('./security.php');
+    extract($_GET);
     if (isset($_SESSION['id_user'])) {
-        extract($_GET);
         if ($p == "dashboard") {//Tableau de board
             include_once('app/views/view_dashboard.php');
         } elseif($p == "deconnexion"){//Deconnexion
@@ -22,7 +22,10 @@
         } elseif($p == "lstUser"){//lstUser
             include_once('app/views/view_lstUser.php');
         }
-
+        //Controle de session
+        //include_once("app/controle_session.php");
+    } elseif(isset($_GET['msg'])){//
+        require('app/views/view_login.php');
     } else {//Connexion
         if(isset($_POST['connecter'])){
             $login = echapper($_POST['login']) ;

@@ -31,7 +31,7 @@ function insert_user($id_profil, $nom, $prenom, $login, $password, $id_user_conn
 function select_user($critere){
     $pdo = $GLOBALS['connexion'];
     $records = $pdo->query("SELECT id_user, libelle_profil, nom_user, prenom_user, login, statut_activation
-                 FROM users u, profil p
+                 FROM user u, profil p
                  WHERE u.id_profil=p.id_profil and $critere");
     return $records;
 }//fin fonction select_user
@@ -119,6 +119,17 @@ function update_password_user($login, $password)
     {
         return false;
     }
+}
+
+/**
+ * Function select Profil de l'user
+ * @param Int id profil
+ * @return résulat
+ */
+function select_profil_user($profil){
+    $pdo = $GLOBALS['connexion'];
+    $records = $pdo->query("SELECT * FROM profil WHERE id_profil = '$profil'");
+    return $records;
 }
 
 

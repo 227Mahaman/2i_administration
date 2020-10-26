@@ -39,7 +39,8 @@
 									$i = 0;
 									$records = select_user(true);
 									foreach($records as $row) {
-										$profil = select_profil_user(htmlentities(stripcslashes($row['id'])))->fetch();
+										$id = $row['id_user'];
+										$profil = select_profil_user($id)->fetch();
 								?>
 								<tr>
 									<td><?= ++$i;?></td>

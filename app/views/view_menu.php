@@ -5,12 +5,12 @@
 	$menu = "";
 	//enregistrement des données du formulaire dans la base
 	if (isset($_POST['bouton_envoyer'])) {
-		$libelle = echapper($_POST['libelle_groupe']);
-		$icon = echapper($_POST['icon_groupe']);
-		$bloc = echapper($_POST['bloc_menu']);
-		$ordre = echapper($_POST['ordre_affichage_groupe']);
-		$result = insert_module($libelle, $icon, $bloc, $ordre);
-		//var_dump($result);die;
+		$groupe = echapper($_POST['id_groupe']);
+		$libelle = echapper($_POST['libelle_action']);
+		$description = echapper($_POST['description_action']);
+		$url = echapper($_POST['url_action']);
+		$ordre = echapper($_POST['ordre_affichage_action']);
+		$result = insert_menu($groupe, $libelle, $description, $url, $ordre);
 		
 	} elseif (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 		$id = $_GET['modif'];
@@ -71,7 +71,7 @@
 						</div>
 						<div class="form-group">
 							<label>Groupe (Module)</label>
-							<select class="form-control">
+							<select class="form-control" name="id_groupe">
 								<?php
 									$records = select_all_groupes();
 									foreach($records as $row) {

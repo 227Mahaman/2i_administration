@@ -107,5 +107,26 @@ function delete_menu($id){
     }
 }//fin fonction delete_menu
 
+//*********fonction d'insertions
+function insert_menu($groupe, $libelle, $description, $url, $ordre){
+    $pdo = $GLOBALS['connexion'];
+    try
+    {
+        $pdo->beginTransaction();
+        $pdo->exec("INSERT INTO action (id_groupe, libelle_action, description_action, url_action, ordre_affichage_action)
+            VALUES ('$groupe', '$libelle', '$description', '$url', '$ordre')
+        ");
+        $pdo->commit();
+        return true;
+    }
+    catch(Exception $e) //en cas d'erreur
+    {
+        //on annule la transaction
+        $pdo->rollback();
+        return false;
+    }
+    
+}//fin fonction insert_menu
+
 
 

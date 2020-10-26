@@ -1,5 +1,6 @@
 <?php
 	include_once("app/core/action_db_manager.php");
+	include_once("app/core/profil_db_manager.php");
     $title="Menu";
 	ob_start();
 	$menu = "";
@@ -30,6 +31,20 @@
 		if($delete){
 			header("Location: index.php?p=menu");
 		}
+	} elseif (isset($_GET['profil'])){//Rôle (Profil)
+		extract($_GET);
+		$profil = select_profil_one($profil)->fetch();
+		// if(!empty($_POST)){
+		// 	$data = $_POST;
+		// 	$url = ROOT_PATH."index.php/addMenuToProfil/".$role;
+		// 	$add = App::file_post_contents($url, $data);
+		// 	var_dump($add);die;
+		// 	if($add){
+		// 		header('Location: index.php?p=menu&role='.$role);
+		// 	}
+		// }
+		//$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
+		//$actionProfil = json_decode($actionProfil, true);
 	}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -38,7 +53,10 @@
 			<li><a href="#">
 				<em class="fa fa-home"></em>
 			</a></li>
-			<li class="active"><?= $title;?></li>
+			<li class="<?= (isset($_GET['profil'])) ? '' : 'active'?>"><?= $title;?></li>
+			<?php if (isset($_GET['profil'])) : ?>
+				<li class="active">Profil <?= $profil['libelle_profil']?></li>
+			<?php endif;?>
 		</ol>
 	</div><!--/.row-->
 	<div class="row">
@@ -47,6 +65,7 @@
 		</div>
 	</div><!--/.row-->
 	<div class="row">
+		<?php if (!isset($_GET['profil'])) : ?>
 		<div class="col-md-4">
 			<div class="panel panel-default form">
 				<div class="panel-heading">Renseignez les informations</div>
@@ -85,10 +104,11 @@
 				</div>
 			</div>
 		</div><!-- /.panel-->
+		<?php endif; ?>
 		
-		<div class="col-md-8">
+		<div class="<?= (isset($_GET['profil'])) ? 'col-md-12' : 'col-md-8' ?>">
 			<div class="panel panel-default">
-				<div class="panel-heading">Données</div>
+				<div class="panel-heading"><?= isset($_GET['profil']) ? "Menu: Profil" : 'Données' ?></div>
 				<div class="panel-body">
 					<!--<div class="col-md-12">-->
 						<!--<table class="table table-bordered table-striped table-condensed tbody">-->
@@ -112,16 +132,29 @@
 									<td><?= htmlentities(stripcslashes($row['description_action']));?></td>
 									<td><?= htmlentities(stripcslashes($row['url_action']));?></td>
 									<td>
-										<!--<a href="index.php?p=menu&profil=<?//= htmlentities(stripcslashes($row['id_groupe'])); ?>" class="btn btn-success">
-                                            <i class="fa fa-plus"></i>
-                                        </a>-->
-										<a href="index.php?p=menu&modif=<?= htmlentities(stripcslashes($row['id_action'])); ?>" class="btn btn-primary">
-											<i class="fa fa-pencil"></i>
-										</a>
-										<form method="post">
-											<input type="hidden" name="id_action" value="<?= htmlentities(stripcslashes($row['id_action'])); ?>">
-											<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-										</form>
+										<?php if (isset($_GET['profil'])) : ?>
+                                            <form method="post">
+                                            <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input type="hidden" name="id_profil" value="<?= $_GET['profil']; ?>">
+                                                    <!-- name="menu" onchange="submit()" -->
+                                                    <input class="module_is_checked" onchange="addMenuProfil(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?//= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </form>
+                                        <?php else : ?>
+											<a href="index.php?p=menu&modif=<?= htmlentities(stripcslashes($row['id_action'])); ?>" class="btn btn-primary">
+												<i class="fa fa-pencil"></i>
+											</a>
+											<form method="post">
+												<input type="hidden" name="id_action" value="<?= htmlentities(stripcslashes($row['id_action'])); ?>">
+												<button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+											</form>
+										<?php endif; ?>
 									</td>
 								</tr>
 								<?php

@@ -76,7 +76,7 @@
 									$records = select_all_groupes();
 									foreach($records as $row) {
 								?>
-									<option <?= (isset($_GET['modif']) && $value['id_groupe'] == $menu['id_groupe'])? "selected" : "" ?> value="<?= $row['id_groupe']?>"><?= $row['libelle_groupe']?></option>
+									<option <?= (isset($_GET['modif']) && $row['id_groupe'] == $menu['id_groupe'])? "selected" : "" ?> value="<?= $row['id_groupe']?>"><?= $row['libelle_groupe']?></option>
 								<?php } ?>
 							</select>
 						</div>

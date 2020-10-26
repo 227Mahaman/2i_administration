@@ -48,7 +48,7 @@ function select_user_per_page($start, $records_per_page, $critere){
 
 function select_user_one($id_user){
     $pdo = $GLOBALS['connexion'];
-    $records = $pdo->query("select * from users where id_user = $id_user");
+    $records = $pdo->query("select * from user where id_user = $id_user");
     return $records;
 }//fin fonction select_user_per_page
 

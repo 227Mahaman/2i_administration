@@ -41,6 +41,9 @@
 			}
 		}
 		$profil = select_profil_one($profil)->fetch();
+	} elseif (isset($_GET['detail'])){//Detail (Profil)
+		extract($_GET);
+		$profil = select_profil_one($detail)->fetch();
 	}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -49,8 +52,8 @@
 			<li><a href="#">
 				<em class="fa fa-home"></em>
 			</a></li>
-			<li class="<?= (isset($_GET['profil'])) ? '' : 'active'?>"><?= $title;?></li>
-			<?php if (isset($_GET['profil'])) : ?>
+			<li class="<?= (isset($_GET['profil']) || isset($_GET['detail'])) ? '' : 'active'?>"><?= $title;?></li>
+			<?php if (isset($_GET['profil']) || isset($_GET['detail'])) : ?>
 				<li class="active">Profil <?= $profil['libelle_profil']?></li>
 			<?php endif;?>
 		</ol>
@@ -61,7 +64,7 @@
 		</div>
 	</div><!--/.row-->
 	<div class="row">
-		<?php if (!isset($_GET['profil'])) : ?>
+		<?php if (!isset($_GET['profil']) && !isset($_GET['detail'])) : ?>
 		<div class="col-md-4">
 			<div class="panel panel-default form">
 				<div class="panel-heading">Renseignez les informations</div>
@@ -102,9 +105,9 @@
 		</div><!-- /.panel-->
 		<?php endif; ?>
 		
-		<div class="<?= (isset($_GET['profil'])) ? 'col-md-12' : 'col-md-8' ?>">
+		<div class="<?= (isset($_GET['profil']) || isset($_GET['detail'])) ? 'col-md-12' : 'col-md-8' ?>">
 			<div class="panel panel-default">
-				<div class="panel-heading"><?= isset($_GET['profil']) ? "Menu: Profil" : 'Données' ?></div>
+				<div class="panel-heading"><?= isset($_GET['profil']) || isset($_GET['detail']) ? "Menu: Profil" : 'Données' ?></div>
 				<div class="panel-body">
 					<!--<div class="col-md-12">-->
 						<!--<table class="table table-bordered table-striped table-condensed tbody">-->
@@ -119,7 +122,11 @@
 							<tbody>
 								<?php
 									$i = 0;
-									$records = select_all_menus();
+									if($_GET['detail']){
+										$records = select_all_profil_menus($_GET['detail']);
+									} else{
+										$records = select_all_menus();
+									}
 									foreach($records as $row) {
 										if(isset($_GET['profil'])){//Vérification
 											$actProfil = select_profil_menu($_GET['profil'],$row['id_action'])->fetch();
@@ -139,12 +146,22 @@
                                                 <label>
                                                     <!--<input type="hidden" name="id_profil" value="<?//= $_GET['profil']; ?>">-->
                                                     <!-- name="menu" onchange="submit()" || onchange="addMenuProfil(this)" -->
-                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> <?= (isset($_GET['detail'])) ? 'disabled' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
                                             </div>
-                                            </form>
+											</form>
+											<?php elseif (isset($_GET['detail'])) : ?>
+                                            <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input value="<?= $row['id_action'] ?>" type="checkbox" checked disabled > ajouter au profil
+                                                </label>
+                                                </div>
+                                            </div>
+                                            </div>
                                         <?php else : ?>
 											<a href="index.php?p=menu&modif=<?= htmlentities(stripcslashes($row['id_action'])); ?>" class="btn btn-primary">
 												<i class="fa fa-pencil"></i>

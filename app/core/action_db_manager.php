@@ -54,7 +54,7 @@ function select_all_menus(){
 //*********fonctions de selections de toutes les menus d'un profil donné
 function select_all_profil_menus($id){
     $pdo = $GLOBALS['connexion'];
-    $records = $pdo->query("SELECT a.id_groupe,icon_groupe, libelle_groupe, pa.id_action, libelle_action, description_action
+    $records = $pdo->query("SELECT a.id_groupe,icon_groupe, libelle_groupe, pa.id_action, libelle_action, description_action, url_action
                             FROM profil_has_action pa,action a, groupe_action g
                             WHERE pa.id_action=a.id_action and a.id_groupe=g.id_groupe and id_profil=$id
                             order by libelle_groupe");

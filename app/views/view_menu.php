@@ -148,7 +148,7 @@
                                                 <label>
                                                     <!--<input type="hidden" name="id_profil" value="<?//= $_GET['profil']; ?>">-->
                                                     <!-- name="menu" onchange="submit()" || onchange="addMenuProfil(this)" -->
-                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> <?= (isset($_GET['detail'])) ? 'disabled' : '';?> > ajouter au profil
+                                                    <input class="module_is_checked" id="id_action" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> <?= (isset($_GET['detail'])) ? 'disabled' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>

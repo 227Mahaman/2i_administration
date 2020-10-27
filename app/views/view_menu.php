@@ -39,7 +39,9 @@
 			if($add){
 				header('Location: index.php?p=menu&profil='.$profil);
 			}
-		}
+		// } elseif(isset($menu)){
+		// 	//var_dump($_POST);die;
+		// }
 		$profil = select_profil_one($profil)->fetch();
 	} elseif (isset($_GET['detail'])){//Detail (Profil)
 		extract($_GET);

@@ -33,15 +33,26 @@
 		}
 	} elseif (isset($_GET['profil'])){//Rôle (Profil)
 		extract($_GET);
+		//var_dump($menu);
+		//var_dump($_POST);die;
 		if(!empty($_POST)){
+			//var_dump($_POST);die;
 			$menu = $_POST['menu'];
-			$add = insert_menu_profil($profil, $menu);
-			if($add){
-				header('Location: index.php?p=menu&profil='.$profil);
+			//var_dump($menu);
+			$verification = verification_profil_menu($profil, $menu)->fetch();
+			if($verification==false){
+				$add = insert_menu_profil($profil, $menu);
+				if($add){
+					header('Location: index.php?p=menu&profil='.$profil);
+				}
+			} else {
+				//$delete = delete_profil_menu();
+				die;
 			}
+			//var_dump($verification);die;
 		// } elseif(isset($menu)){
 		// 	//var_dump($_POST);die;
-		// }
+		}
 		$profil = select_profil_one($profil)->fetch();
 	} elseif (isset($_GET['detail'])){//Detail (Profil)
 		extract($_GET);
@@ -148,7 +159,7 @@
                                                 <label>
                                                     <!--<input type="hidden" name="id_profil" value="<?//= $_GET['profil']; ?>">-->
                                                     <!-- name="menu" onchange="submit()" || onchange="addMenuProfil(this)" -->
-                                                    <input class="module_is_checked" id="id_action" name="menu" onchange="submit()" value="<?= $row['id_action'] ?>" type="checkbox" <?= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> <?= (isset($_GET['detail'])) ? 'disabled' : '';?> > ajouter au profil
+                                                    <input class="module_is_checked" id="id_action" name="menu" onchange="addMenuRole(this)" value="<?= $row['id_action'] ?>" type="checkbox" <?//= (isset($actProfil['id_action']) && $actProfil['id_action']==$row['id_action']) ? 'checked' : '';?> <?//= (isset($_GET['detail'])) ? 'disabled' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
@@ -186,6 +197,16 @@
 		</div><!-- /.col-->
 	</div>
 </div>	<!--/.main-->
+<script type="text/javascript">
+	$("#id_action").click(function(){
+		console.log($(v).val(), "resultat");
+		$ajax({
+			url: "index.php?p=menu&profil=<?= $_GET['profil'];?>",
+			type: "post",
+			data: "id_action=" + $(v).val()
+		});
+	});
+</script>
 <?php
     $content = ob_get_clean();
     require('template.php');
